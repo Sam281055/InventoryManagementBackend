@@ -2,7 +2,7 @@ import express from "express"
 import dotenv from "dotenv"
 import bodyParser from "body-parser"
 import cors from "cors"
-import helmet from "helmet"
+// import helmet from "helmet"
 import morgan from "morgan"
 // RouteImports
 import dashboardRoutes from "./routes/dashboardRoutes"
@@ -20,17 +20,17 @@ app.use(morgan("common"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(cors());
-app.use(helmet({
-    contentSecurityPolicy: {
-      directives: {
-        defaultSrc: ["'self'"],
-        scriptSrc: ["'self'", "https://vercel.live"], // Permitir scripts de vercel.live
-        connectSrc: ["'self'", "https://vercel.live"], // Permitir conexiones a vercel.live
-        imgSrc: ["'self'", "data:"],
-        styleSrc: ["'self'", "https://fonts.googleapis.com"]
-      },
-    },
-  }));
+// app.use(helmet({
+//     contentSecurityPolicy: {
+//       directives: {
+//         defaultSrc: ["'self'"],
+//         scriptSrc: ["'self'", "https://vercel.live"], // Permitir scripts de vercel.live
+//         connectSrc: ["'self'", "https://vercel.live"], // Permitir conexiones a vercel.live
+//         imgSrc: ["'self'", "data:"],
+//         styleSrc: ["'self'", "https://fonts.googleapis.com"]
+//       },
+//     },
+//   }));
 // Routes
 app.use("/dashboard", dashboardRoutes);
 app.use("/products", productRoutes);
