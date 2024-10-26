@@ -3,10 +3,7 @@
   "builds": [
     {
       "src": "dist/src/index.js",
-      "use": "@vercel/node",
-      "config": {
-        "cache": false
-      }
+      "use": "@vercel/node"
     }
   ],
   "routes": [
@@ -15,5 +12,5 @@
       "dest": "dist/src/index.js"
     }
   ],
-  "buildCommand": "npm run build"
+  "buildCommand": "npm run build && npx prisma generate"
 }
