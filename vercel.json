@@ -12,5 +12,28 @@
       "dest": "dist/src/index.js"
     }
   ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self' https://vercel.live; connect-src 'self' https://vercel.live; img-src 'self' data:; style-src 'self' https://fonts.googleapis.com"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        }
+      ]
+    }
+  ],
   "buildCommand": "npm run build && npx prisma generate"
 }

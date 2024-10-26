@@ -29,6 +29,7 @@ app.use(helmet({
         connectSrc: ["'self'", "https://vercel.live"], // Permitir conexiones a vercel.live
         imgSrc: ["'self'", "data:"], // Permitir imágenes de la misma fuente y de datos
         styleSrc: ["'self'", "https://fonts.googleapis.com"], // Permitir estilos de la misma fuente y de Google Fonts
+        // Agrega más directivas según tus necesidades
       },
     },
   }));
