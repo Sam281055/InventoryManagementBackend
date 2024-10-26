@@ -14,22 +14,24 @@ import expenseRoutes from "./routes/expenseRoutes"
 dotenv.config();
 const app = express();
 app.use(express.json());
-app.use(helmet());
-app.use(helmet.crossOriginResourcePolicy({policy:"cross-origin"}));
+// app.use(helmet());
+// app.use(helmet.crossOriginResourcePolicy({policy:"cross-origin"}));
 app.use(morgan("common"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(cors());
-app.use(
-    helmet.contentSecurityPolicy({
+app.use(helmet({
+    crossOriginResourcePolicy: { policy: "cross-origin" },
+    contentSecurityPolicy: {
       directives: {
-        defaultSrc: ["'self'"], // Permite cargar solo scripts desde la misma fuente
-        scriptSrc: ["'self'", "https://vercel.live"], // Permite cargar scripts desde vercel.live
-        connectSrc: ["'self'", "https://vercel.live"], // Permite conexiones a vercel.live
-        // Agrega más directivas según tus necesidades
+        defaultSrc: ["'self'"], // Permitir recursos de la misma fuente
+        scriptSrc: ["'self'", "https://vercel.live"], // Permitir scripts de vercel.live
+        connectSrc: ["'self'", "https://vercel.live"], // Permitir conexiones a vercel.live
+        imgSrc: ["'self'", "data:"], // Permitir imágenes de la misma fuente y de datos
+        styleSrc: ["'self'", "https://fonts.googleapis.com"], // Permitir estilos de la misma fuente y de Google Fonts
       },
-    })
-  );
+    },
+  }));
 // Routes
 app.use("/dashboard", dashboardRoutes);
 app.use("/products", productRoutes);
