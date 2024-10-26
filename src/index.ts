@@ -20,7 +20,16 @@ app.use(morgan("common"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(cors());
-
+app.use(
+    helmet.contentSecurityPolicy({
+      directives: {
+        defaultSrc: ["'self'"], // Permite cargar solo scripts desde la misma fuente
+        scriptSrc: ["'self'", "https://vercel.live"], // Permite cargar scripts desde vercel.live
+        connectSrc: ["'self'", "https://vercel.live"], // Permite conexiones a vercel.live
+        // Agrega más directivas según tus necesidades
+      },
+    })
+  );
 // Routes
 app.use("/dashboard", dashboardRoutes);
 app.use("/products", productRoutes);
