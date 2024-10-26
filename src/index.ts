@@ -21,15 +21,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(cors());
 app.use(helmet({
-    crossOriginResourcePolicy: { policy: "cross-origin" },
     contentSecurityPolicy: {
       directives: {
-        defaultSrc: ["'self'"], // Permitir recursos de la misma fuente
+        defaultSrc: ["'self'"],
         scriptSrc: ["'self'", "https://vercel.live"], // Permitir scripts de vercel.live
         connectSrc: ["'self'", "https://vercel.live"], // Permitir conexiones a vercel.live
-        imgSrc: ["'self'", "data:"], // Permitir imágenes de la misma fuente y de datos
-        styleSrc: ["'self'", "https://fonts.googleapis.com"], // Permitir estilos de la misma fuente y de Google Fonts
-        // Agrega más directivas según tus necesidades
+        imgSrc: ["'self'", "data:"],
+        styleSrc: ["'self'", "https://fonts.googleapis.com"]
       },
     },
   }));
